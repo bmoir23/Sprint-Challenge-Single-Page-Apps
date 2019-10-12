@@ -1,21 +1,25 @@
 import React from "react";
 import {
   Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle
+  CardTitle, CardSubtitle 
 } from 'reactstrap';
 
-const CharacterCard = props => {
-  const { image, name, species, status} = props.character;
+// const CharacterCard = props => {
+//   const { image, name, species, status} = props.character;
+export default function CharacterCard(props){
+
   return  (
+    <div>
     <Card>
-      <CardImg top width="20%" src={image} alt="Image" />
+      <CardImg top width="100%" src={props.image} alt="Image" />
       <CardBody>
-        <CardTitle>*Burp*Name: {name}</CardTitle>
-        <CardSubtitle>Species: {species}</CardSubtitle>
-        <CardText>Dat Status: {status}</CardText>
+        <CardTitle>{props.name}</CardTitle>
+        <CardSubtitle>{props.species}</CardSubtitle>
+        <CardText>{props.status}</CardText>
       </CardBody>
     </Card>
+    </div>
   );
 };
 
-export default CharacterCard;
+// export default CharacterCard;
