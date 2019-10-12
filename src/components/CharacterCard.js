@@ -11,7 +11,7 @@ const CharacterCard = props => {
       <CardImg top width="20%" src={image} alt="Image" />
       <CardBody>
         <CardTitle>*Burp*Name: {name}</CardTitle>
-        <CardSubtitle>Species: {specied}</CardSubtitle>
+        <CardSubtitle>Species: {species}</CardSubtitle>
         <CardText>Dat Status: {status}</CardText>
       </CardBody>
     </Card>
