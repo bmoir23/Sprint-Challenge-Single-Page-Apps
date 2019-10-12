@@ -27,7 +27,7 @@ export default function CharacterList(props) {
   }, []);
 
   let searchedCharacters = characters.filter(char =>{
-    if(char.name.toLowerCase().indexOf(props.name.toLowerCase())){
+  if(char.name.toLowerCase().indexOf(props.name.toLowerCase())){
       return char;
     } else{
       return null;
