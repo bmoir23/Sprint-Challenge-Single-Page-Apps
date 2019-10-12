@@ -36,7 +36,7 @@ export default function CharacterList(props) {
   return (
 
     <section className="character-list gridCard">
-      {searchedCharacter.map(character => {
+      {searchedCharacters.map(character => {
         return (
           <CharacterCard
           img={character.image}
