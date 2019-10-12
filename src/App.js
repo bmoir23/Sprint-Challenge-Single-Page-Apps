@@ -19,7 +19,9 @@ export default function App() {
       <Header />
       <SearchForm onSearch={searchFunc} />
       <Route exact path="/" component={WelcomePage} />
-      <Route exact path="/characters" component={CharacterList} component={() => <CharacterList name={name} />}
+      <Route exact path="/characters" 
+      component={CharacterList} 
+      component={() => <CharacterList name={name} />}
       />
     </main>
   );
