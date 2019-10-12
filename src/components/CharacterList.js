@@ -1,46 +1,34 @@
+  
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CharacterCard from "./CharacterCard";
 
 
-export default function CharacterList(props) {
-  const [characters, setCharacters] = useState([]);
+export default function CharacterList() {
   // TODO: Add useState to track data from useEffect
+  const [character, setCharacter] = useState([]);
 
   useEffect(() => {
     // TODO: Add API Request here - must run in `useEffect`
-    //  Important: verify the 2nd `useEffect` parameter: the dependancies array!
-    axios
+      axios 
       .get("https://rickandmortyapi.com/api/character/")
       .then(res => {
-        setCharacters(res.data.results);
+        setCharacter(res.data.results);
+        // console.log(res.data.results);
       })
-      .catch(err => {
-        console.log(err);
+      .catch(error => {
+        console.error("Server Error", error);
       });
+    //  Important: verify the 2nd `useEffect` parameter: the dependancies array!
   }, []);
 
-  let searchedCharacters = characters.filter(char => {
-    if (char.name.toLowerCase().indexOf(props.name.toLowerCase()) > -1) {
-      return char;
-    } else {
-      return null;
-    }
-  });
-
   return (
-    <section className="character-list gridCardyCards">
-      {searchedCharacters.map(character => {
-        return (
-          <CharacterCard
-            img={character.image}
-            name={character.name}
-            location={character.location.name}
-            species={character.species}
-          />
-        );
-      })}
-    </section>
+    <div className="character-list">
+      {character.map(character => {
+        console.log(character);
+        return <CharacterCard key={character.id} character={character} />;
+})}
+    </div>
   );
 }
 
