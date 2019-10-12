@@ -25,13 +25,13 @@ export default function CharacterList(props) {
     });
   }, []);
 
-  let searchedCharacters = characters.filter(char => {
-    if (char.name.toLowerCase().indexOf(props.name.toLowerCase()) > -1){
-      return char;
-    } else {
-      return null;
-    }
-  });
+  // let searchedCharacters = characters.filter(char => {
+  //   if (char.name.toLowerCase().indexOf(props.name.toLowerCase()) > -1){
+  //     return char;
+  //   } else {
+  //     return null;
+  //   }
+  // });
 
   return (
 
