@@ -1,67 +1,37 @@
-// import React, { useState, useEffect } from "react";
-import { withFormik, Form, Field} from "formik";
-import * as Yup from 'yup';
-import axios from "axios";
 
-const Search = ({ values, errors, touched, status}) => {
-  const [user, setUser] = useState([]);
-  useEffect(() => {
-    if (status) {
-      setUser([...user, status]);
-    }
-  }, [status]);
+import React, { useState } from "react";
+import { Form, FormGroup, Label, Input} from "reactstrap";
 
-  return(
-    <div className="user-form">
-      <Form>
-        <Field type="text" name="name" placeholder="Name Here"/>
-        {touched.name && errors.name && (
-          <p className="error">{errors.name}</p>
-        )}
+export default function SearchForm ({ onSearch }) {
+  const [search, setSearch] = useState({ name: "" });
 
-        <button type="submit">Search Morty!</button>
-      </Form>
-      {user.map(user => (
-        <ul key={user.id}>
-          <li>Name: {user.name}</li>
-        </ul>
-      ))}
-</div>
-  );
 
+const handleInputChange = event => {
+  setSearch({ ...search, name: event.target.value.substr(0, 20)});
 };
-
-const FormikUserForm = withFormik({
-  mapPropsToValues({ name }) {
-    return {
-      name: name || ""
-    };
-  },
-  validationSchema: Yup.object(), shape({
-    name: Yup.string().required(),
-  }),
-  handleSubmit(values, { setStatus, resetForm}) {
-    axios
-    .post("https://reqres.in/api/users/", values)
-    .then(res => {
-      console.log(res);
-      setStatus(res.data.result);
-      resetForm();
-    })
-    .catch(err => console.log(err.res));
-  }
-
-}) (Search);
-
-console.log("this is the HOC", FormikUserForm);
-export default FormikUserForm; 
+return (
+  <Form onSubmit={event => onSearch(event, search )}>
+    <FormGroup className="SearchBar">
+      <Label for="exampleSearch">Search</Label>
+      <Input
+          className="search-bar"
+          type="search"
+          name="name"
+          id="exampleSearch"
+          placeholder="Search by Name"
+          onChange={handleInputChange}
+          value={search.name}
+          />
+    </FormGroup>
+  </Form>
+)
+}
 
 
-// export default function SearchForm() {
- 
-//   return (
-//     <section className="search-form">
-//      // Add a search form here
-//     </section>
-//   );
-// }
+
+
+
+
+
+
+
