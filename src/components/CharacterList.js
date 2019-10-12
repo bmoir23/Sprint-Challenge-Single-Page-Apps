@@ -27,11 +27,12 @@ export default function CharacterList(props) {
   }, []);
 
   let searchedCharacters = characters.filter(char => {
-  if (char.name.toLowerCase().indexOf(props.name.toLowerCase()) > -1){
+  (char.name.toLowerCase().indexOf(props.name.toLowerCase()) > -1){
       return char;
-    } else {
-      return null;
-    }
+  }
+    // } else {
+    //   return null;
+    // }
     });
 
   return (
@@ -59,3 +60,6 @@ export default function CharacterList(props) {
     // </section>
   );
 }
+
+
+
